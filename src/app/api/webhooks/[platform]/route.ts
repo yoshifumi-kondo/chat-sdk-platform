@@ -26,18 +26,21 @@ export async function POST(
     return new Response(`Adapter for ${platform} is not configured`, { status: 404 });
   }
 
-  console.log(`[webhook:${platform}] incoming request`, {
-    hasSignature: !!request.headers.get("x-signature-ed25519"),
-    hasTimestamp: !!request.headers.get("x-signature-timestamp"),
-    publicKeyEnv: process.env.DISCORD_PUBLIC_KEY?.slice(0, 8) + "..." + process.env.DISCORD_PUBLIC_KEY?.slice(-8),
-    publicKeyLength: process.env.DISCORD_PUBLIC_KEY?.length,
-  });
+  // Vercel/Next.js では request.arrayBuffer() のバイト列がDiscordの署名元と一致しないことがある。
+  // request.text() で文字列として読み、新しいRequestを構築して渡すことで回避する。
+  let requestForHandler = request;
+  if (platform === "discord") {
+    const bodyText = await request.text();
+    requestForHandler = new Request(request.url, {
+      method: request.method,
+      headers: request.headers,
+      body: bodyText,
+    });
+  }
 
-  const response = await handler(request, {
+  const response = await handler(requestForHandler, {
     waitUntil: (task: Promise<unknown>) => after(() => task),
   });
-
-  console.log(`[webhook:${platform}] response status: ${response.status}`);
 
   return response;
 }
