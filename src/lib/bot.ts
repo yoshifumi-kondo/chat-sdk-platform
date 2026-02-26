@@ -64,6 +64,7 @@ const bot = new Chat({
   userName: "mention-collector",
   adapters: buildAdapters(),
   state: createMemoryState(),
+  logger: "info",
 });
 
 bot.onNewMention(async (thread, message) => {
