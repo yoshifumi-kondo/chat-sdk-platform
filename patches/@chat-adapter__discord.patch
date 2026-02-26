@@ -1,5 +1,5 @@
 diff --git a/dist/index.js b/dist/index.js
-index e9ed311f326d0331458297a3e2d566ae029b9907..2c839c4bc478c1b69eb8b733479be0adf986c274 100644
+index e9ed311f326d0331458297a3e2d566ae029b9907..d1b3773308303ead480bc84d5378aaa2d2284528 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -370,9 +370,8 @@ var DiscordAdapter = class {
@@ -23,3 +23,12 @@ index e9ed311f326d0331458297a3e2d566ae029b9907..2c839c4bc478c1b69eb8b733479be0ad
        signature,
        timestamp
      );
+@@ -474,7 +473,7 @@ var DiscordAdapter = class {
+         this.publicKey
+       );
+       if (!isValid) {
+-        const bodyString = new TextDecoder().decode(bodyBytes);
++        const bodyString = typeof bodyBytes === "string" ? bodyBytes : new TextDecoder().decode(bodyBytes);
+         this.logger.warn(
+           "Discord signature verification failed: invalid signature",
+           {

@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@chat-adapter/discord':
-    hash: 9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e
+    hash: 00394f07e9cba94413435b6c3bd60f4ad2f39a4b27418f89757ff87253fa75e5
     path: patches/@chat-adapter__discord.patch
 
 importers:
@@ -15,7 +15,7 @@ importers:
     dependencies:
       '@chat-adapter/discord':
         specifier: ^4.14.0
-        version: 4.14.0(patch_hash=9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e)
+        version: 4.14.0(patch_hash=00394f07e9cba94413435b6c3bd60f4ad2f39a4b27418f89757ff87253fa75e5)
       '@chat-adapter/gchat':
         specifier: ^4.14.0
         version: 4.14.0
@@ -4886,7 +4886,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@chat-adapter/discord@4.14.0(patch_hash=9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e)':
+  '@chat-adapter/discord@4.14.0(patch_hash=00394f07e9cba94413435b6c3bd60f4ad2f39a4b27418f89757ff87253fa75e5)':
     dependencies:
       '@chat-adapter/shared': 4.14.0
       chat: 4.14.0
