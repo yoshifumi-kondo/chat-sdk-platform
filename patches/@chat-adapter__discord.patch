@@ -1,0 +1,25 @@
+diff --git a/dist/index.js b/dist/index.js
+index e9ed311f326d0331458297a3e2d566ae029b9907..2c839c4bc478c1b69eb8b733479be0adf986c274 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -370,9 +370,8 @@ var DiscordAdapter = class {
+    * Handle incoming Discord webhook (HTTP Interactions or forwarded Gateway events).
+    */
+   async handleWebhook(request, options) {
+-    const bodyBuffer = await request.arrayBuffer();
+-    const bodyBytes = new Uint8Array(bodyBuffer);
+-    const body = new TextDecoder().decode(bodyBytes);
++    const body = await request.text();
++    const bodyBytes = new Uint8Array(new TextEncoder().encode(body));
+     const gatewayToken = request.headers.get("x-discord-gateway-token");
+     if (gatewayToken) {
+       if (gatewayToken !== this.botToken) {
+@@ -396,7 +395,7 @@ var DiscordAdapter = class {
+     const signature = request.headers.get("x-signature-ed25519");
+     const timestamp = request.headers.get("x-signature-timestamp");
+     const signatureValid = await this.verifySignature(
+-      bodyBytes,
++      body,
+       signature,
+       timestamp
+     );

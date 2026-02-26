@@ -4,13 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@chat-adapter/discord':
+    hash: 9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e
+    path: patches/@chat-adapter__discord.patch
+
 importers:
 
   .:
     dependencies:
       '@chat-adapter/discord':
         specifier: ^4.14.0
-        version: 4.14.0
+        version: 4.14.0(patch_hash=9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e)
       '@chat-adapter/gchat':
         specifier: ^4.14.0
         version: 4.14.0
@@ -4881,7 +4886,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@chat-adapter/discord@4.14.0':
+  '@chat-adapter/discord@4.14.0(patch_hash=9ea30b34beb693120425d4f63eae133016bacb18581f36f29a816f242443c80e)':
     dependencies:
       '@chat-adapter/shared': 4.14.0
       chat: 4.14.0
